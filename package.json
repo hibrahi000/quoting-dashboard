@@ -1,16 +1,40 @@
 {
-  "name": "abh-quoting-app",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "ejs": "^2.6.1",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
-  }
+	"name": "abh-quoting-app",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "nodemon ./bin/www",
+		"test": "node-sass -o public/stylesheets scss/_colors.scss; node-sass -o public/stylesheets scss/_layout.scss ; say I am done "
+	},
+	"dependencies": {
+		"@sendgrid/mail": "^6.4.0",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"chalk": "^2.4.2",
+		"chart.js": "^2.8.0",
+		"concurrently": "^4.1.0",
+		"connect-flash": "^0.1.1",
+		"cookie-parser": "~1.4.4",
+		"cookie-session": "^1.3.3",
+		"debug": "~4.1.1",
+		"dotenv": "^8.0.0",
+		"ejs": "^2.6.1",
+		"express": "^4.17.1",
+		"http-errors": "^1.7.2",
+		"jsonwebtoken": "^8.5.1",
+		"lodash": "^4.17.11",
+		"mongoose": "^5.5.11",
+		"morgan": "~1.9.1",
+		"node-sass": "^4.12.0",
+		"passport": "^0.4.0",
+		"passport-local": "^1.0.0",
+		"path": "^0.12.7",
+		"serve-favicon": "^2.5.0",
+		"winston": "^3.2.1"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-plugin-import": "^2.17.3"
+	}
 }
