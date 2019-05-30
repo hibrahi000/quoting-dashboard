@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const key = require('./config/keys');
 const login = require('./routes/login');
+const user = require('./routes/user');
 const sessions = require('cookie-session');
 const app = express();
 const passport = require('passport');
@@ -32,22 +33,25 @@ app.use(
 	})
 );
 
+// ___passport middleware
+require('./config/passport')(passport);
+app.use(passport.initialize('./config/passport.js')); // this initializes
+app.use(passport.session());
+
 // ___ user flash
 app.use(flash());
 
-// ^^Connect to database
-mongoose
-	.connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
-	.then(() => console.log('Connected to ABH Pharma DB.....'))
-	.catch((err) => console.log(err));
 
 	// ___Mounting the route at the / path
 	app.use('/', login);
+	app.use('/Dashboard', user);
 	
 // ++catch 404 and forward to error handler
-app.use((req, res, next) => {
-	next(createError(404));
-});
+// !come back to this as it doesnt work properly 
+
+// app.use((req, res, next) => {
+// 	next(createError(404));
+// });
 
 
 // ++ global vars
@@ -59,24 +63,21 @@ app.use((req, res, next) => {
 });
 
 // !! error handler
-app.use((err, req, res) => {
-	// ;; set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use((err, req, res) => {
+// 	// ;; set locals, only providing error in development
+// 	res.locals.message = err.message;
+// 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-	// ;;render the error page
-	res.status(err.status || 50);
-	res.render('error');
-});
+// 	// ;;render the error page
+// 	res.status(err.status || 50);
+// 	res.render('error');
+// });
 
 // ____Body-Parser for express 4
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-// ___passport middleware
-require('./config/passport')(passport);
-app.use(passport.initialize('./config/passport.js')); // this initializes
-app.use(passport.session());
+
 
 // ___Sendgrid Mailing Setup
 sgMail.setApiKey(key.SENDGRID_API_KEY);

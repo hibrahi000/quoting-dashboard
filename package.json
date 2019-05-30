@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "nodemon ./bin/www",
-		"test": "node-sass -o public/stylesheets scss/_colors.scss; node-sass -o public/stylesheets scss/_layout.scss ; say I am done "
+		"test": "node-sass -o public/stylesheets scss/loginStyle.scss; node-sass -o public/stylesheets scss/_layout.scss ; say I am done "
 	},
 	"dependencies": {
 		"@sendgrid/mail": "^6.4.0",
