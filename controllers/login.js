@@ -1,47 +1,51 @@
 const jwt = require('jsonwebtoken');
+const app_load = require('./user').app_load;
 const passport = require('passport');
 const key = require('../config/keys');
 
-exports.load_page = (req, res, next) => {
-	res.render('login', { login: 'Test', password: 'TEST1' });
+let message = {
+	type: '',
+	message: ''
+};
+exports.login_load = (req, res, next) => {
+	res.render('login', { message: message });
 };
 
 exports.verify_employee = (req, res, next) => {
-	console.log('SALES');
 	console.log(req.body);
-	const { username } = req.body;
-	const token = jwt.sign(
-		{
-			User: username,
-			auth: 'SALES'
-		},
-		key.jwtSecret
-	);
-	console.log(token);
-	passport.authenticate('salesPass', {
-		successRedirect: `/Dashboard?tok=${token}`,
-		failureRedirect: '/',
-		failureFlash: 'Invalid User Name Or Password',
-		successFlash: 'Welcome Back! Sales Staff'
+	console.log('SALES Verification Begin...');
+	passport.authenticate('salesPass', (errors, staff) => {
+		if(errors) {throw errors};
+		if (staff === false) {
+			req.flash('error_msg','Invalid Credentials');
+			res.redirect('/')
+		} else {
+			req.logIn(staff,(err) => {
+				if(err) { return next(err); }
+				res.redirect(`/Quoting_App`);
+			})
+		}
 	})(req, res, next);
 };
 
-exports.verrify_manager = (req, res, next) => {
-	console.log('MANAGER');
-	console.log(req.body);
-	const { username } = req.body;
-	const token = jwt.sign(
-		{
-			User: username,
-			auth: 'MANAGER'
-		},
-		key.jwtSecret
-	);
-	console.log(token);
-	passport.authenticate('managerPass', {
-		successRedirect: `/Dashboard?tok=${token}`,
-		failureRedirect: '/',
-		failureFlash: 'Invalid User Name Or Password',
-		successFlash: 'Welcome Back! Manager'
+exports.verify_manager = (req, res, next) => {
+	console.log('MANAGER Verification Begin...');
+	passport.authenticate('managerPass', (errors, staff) => {
+		if(errors) {throw errors};
+		if (staff === false) {
+			req.flash('error_msg','Invalid Credentials');
+			res.redirect('/')
+		} else {
+			req.logIn(staff,(err) => {
+				console.log('as');
+				res.locals.cred = {
+					manager: false,
+					admin : false,
+					name : `${staff.FirstName} ${staff.LastName}`
+				}
+				if(err) { return next(err); }
+				res.redirect(`/Quoting_App`);
+			})
+		}
 	})(req, res, next);
 };

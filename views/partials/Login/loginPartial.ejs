@@ -1,13 +1,22 @@
+
 <div class="wrapper fadeInDown">
+    <!--  Error Message Section -->
+    <%-include ../strapAlerts/message.ejs %>
+    
+    <!-- Form Section -->
     <div id="formContent">
         <!-- Tabs Titles -->
         <div>
             <ul class="nav nav-pills nav-fill">
-                <li class="nav-item ">
-                  <a class="nav-link active" id='sales-tab' data-toggle='pill' href="#salesLogin" roll='tab' aria-controls='salesLogin' aria-selected="true">Sales</a>
+                <li class="nav-item">
+                    <a class="nav-link active" id='sales-tab' data-toggle='pill'
+                        href="#salesLogin" roll='tab' aria-controls='salesLogin'
+                        aria-selected="true">Sales</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link"  id="manager-tab" data-toggle='pill' href="#managerLogin" roll='tab' aria-controls = 'managerLogin'>Manager</a>
+                    <a class="nav-link" id="manager-tab" data-toggle='pill'
+                        href="#managerLogin" roll='tab' aria-controls=
+                        'managerLogin'>Manager</a>
                 </li>
             </ul>
         </div>
@@ -21,19 +30,25 @@
         </div>
         <div class="tab-content" id="myTabContent">
             <!-- Sales Login Form -->
-            <form class="tab-pane fade show active" id='salesLogin' role="tabpanel" aria-labelledby="sales-tab" action="/User_Authenticate" method="POST">
+            <form class="tab-pane fade show active" id='salesLogin'
+                role="tabpanel" aria-labelledby="sales-tab"
+                action="/User_Authenticate" method="POST">
                 <p>SALES</p>
-                <input type="text" id="username" class="fadeIn first" name="username"
-                    placeholder="login" required >
+                <input type="text" id="username" class="fadeIn first"
+                    name="username"
+                    placeholder="login" required>
                 <input type="password" id="password" class="fadeIn second"
-                    name="password" value='' required >
+                    name="password" value='' required>
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
             <!-- Manager Login Form -->
-            <form class="tab-pane fade" id='managerLogin' role="tabpanel" aria-labelledby="manager-tab" action="/Manager_Authenticate" method="POST">
+            <form class="tab-pane fade" id='managerLogin' role="tabpanel"
+                aria-labelledby="manager-tab" action="/Manager_Authenticate"
+                method="POST">
                 <p>MANAGER</p>
-                <input type="text" id="login" class="fadeIn first" name="username"
+                <input type="text" id="login" class="fadeIn first"
+                    name="username"
                     placeholder="login" required>
                 <input type="password" id="password" class="fadeIn second"
                     name="password" value="" required>
@@ -44,16 +59,15 @@
             <a class="underlineHover popup-open open-btn" id="forgottPass"
                 href="#popup1">Forgot Password?</a>
         </div>
-
-
-
     </div>
-
-      <!-- Popup section -->
-      <div class="popup-wrap" id="popup1">
+    
+    <!-- Popup section -->
+    <div class="popup-wrap" id="popup1">
         <div class="popup-box">
             <h2>Forgot Your Credentials??</h2>
-            <h3>No worries just email <a href="mailto:tech@abhpharma.com">tech@abhpharma.com</a> </h3>
+            <h3>No worries just email <a href="mailto:tech@abhpharma.com">tech@abhpharma.com</a>
+            </h3>
             <a class="close-btn popup-close" id='x-out' href="#">x</a>
         </div>
+    </div>
 </div>

@@ -6,13 +6,24 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const key = require('./config/keys');
-const login = require('./routes/login');
-const user = require('./routes/user');
+const login = require('./routes/login.js');
+const user = require('./routes/user.js');
 const sessions = require('cookie-session');
 const app = express();
 const passport = require('passport');
 const sgMail = require('@sendgrid/mail');
 const flash = require('connect-flash');
+const exp = require('./Experimental/testCode1');
+
+mongoose
+.connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
+.then(() => { console.log('Connected to ABH Pharma DB.....')})
+.catch((err) => console.log(err));
+
+
+
+
+
 
 // :: view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,10 +52,22 @@ app.use(passport.session());
 // ___ user flash
 app.use(flash());
 
+// ++ global vars
+app.use((req, res, next) => {
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.cred = {
+		manager: false,
+		admin : false,
+		name : 'Base Name'
+	};
+	next()
+});
+exp.temp();
 
 	// ___Mounting the route at the / path
 	app.use('/', login);
-	app.use('/Dashboard', user);
+	app.use('/Quoting_App', user);
 	
 // ++catch 404 and forward to error handler
 // !come back to this as it doesnt work properly 
@@ -54,13 +77,6 @@ app.use(flash());
 // });
 
 
-// ++ global vars
-app.use((req, res, next) => {
-	res.locals.success_msg = req.flash('success_msg');
-	res.locals.error_msg = req.flash('error_msg');
-	res.locals.error = req.flash('error');
-	next();
-});
 
 // !! error handler
 // app.use((err, req, res) => {

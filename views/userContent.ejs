@@ -14,20 +14,20 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="/stylesheets/materialDash/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/defStyle.css" type="text/css">
+  
 </head>
 <body class="">
 
+<!--Side bar for either manager or sales using Auth value passed in through server routing -->
+<%-include ./partials/Sidebar/sideBar.ejs %>
 
+<!-- Main Panel shown based on what is passed in through server panelView variable  ** This is set in main Panel ejs file -->
 
+<%-include ./partials/MainPanel/mainPanel.ejs %>
 
-
-
-
-
-
+<!-- Footer of the panel if any  -->
 
 
 

@@ -1,10 +1,19 @@
 html {
-	background-color: #56baed;
+	background-color: #000000;
+	background-image: url('/img/login_background_img.jpg');
+    background-position: center;
+    background-position-y: -114pc;
 }
 
 body {
 	font-family: "Poppins", sans-serif;
 	height: 100vh;
+	background-image: url('/img/login_background_img.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-position-y: -1850px;
+	
+	
 }
 
 a {
@@ -336,12 +345,10 @@ input[type=password]:placeholder {
 		}
 	}
 }
-.popup-wrap:target{
+.popup-wrap:target {
 	visibility: visible;
 	opacity: 1;
 }
-
-
 
 .transform-in,
 .transform-out {

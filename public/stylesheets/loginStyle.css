@@ -1,10 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
 html {
-  background-color: #56baed; }
+  background-color: #000000;
+  background-image: url("/img/login_background_img.jpg");
+  background-position: center;
+  background-position-y: -114pc; }
 
 body {
   font-family: "Poppins", sans-serif;
-  height: 100vh; }
+  height: 100vh;
+  background-image: url("/img/login_background_img.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -1850px; }
 
 a {
   color: #92badd;
