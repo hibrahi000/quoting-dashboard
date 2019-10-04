@@ -7,7 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
-const key =  require('../config/keys');
+const key = process.env;
 
 
 //  ::Routes

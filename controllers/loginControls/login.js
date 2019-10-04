@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const app_load = require('../userControls/genUserControls').app_load;
 const passport = require('passport');
-const key = require('../../config/keys');
+
+const key = process.env;
 
 let message = {
 	type: '',
