@@ -16491,6 +16491,15 @@ label {
     background: linear-gradient(60deg, #ef5350, #e53935)
 }
 
+.card.bg-dark,
+.card .card-header-dark .card-icon,
+.card .card-header-dark .card-text,
+.card .card-header-dark:not(.card-header-icon):not(.card-header-text),
+.card.card-rotate.bg-dark .back,
+.card.card-rotate.bg-dark .front {
+    background: linear-gradient(60deg, #7f8081, #63676b)
+}
+
 .card.bg-rose,
 .card .card-header-rose .card-icon,
 .card .card-header-rose .card-text,

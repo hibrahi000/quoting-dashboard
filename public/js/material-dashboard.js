@@ -147,7 +147,7 @@ $(window).resize(function() {
   }, 500);
 });
 
-md = {
+let md = {
   misc: {
     navbar_menu_visible: 0,
     active_collapse: true,
@@ -164,18 +164,18 @@ md = {
     }
   },
 
-  showNotification: function(from, align) {
-    type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+  showNotification: function(from, align, type, msg) {
+    // type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
 
-    color = Math.floor((Math.random() * 6) + 1);
+    // color = type
 
     $.notify({
       icon: "add_alert",
-      message: "Welcome to <b>Material Dashboard Pro</b> - a beautiful admin panel for every web developer."
+      message: msg
 
     }, {
-      type: type[color],
-      timer: 3000,
+      type: type,
+      timer: 4000,
       placement: {
         from: from,
         align: align
@@ -713,6 +713,7 @@ md = {
     });
   }
 }
+
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for

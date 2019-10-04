@@ -1,11 +1,10 @@
 const createError = require('http-errors');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const key = require('./config/keys');
 const login = require('./routes/login.js');
 const user = require('./routes/user.js');
 const sessions = require('cookie-session');
@@ -13,13 +12,15 @@ const app = express();
 const passport = require('passport');
 const sgMail = require('@sendgrid/mail');
 const flash = require('connect-flash');
-const exp = require('./Experimental/testCode1');
+require('dotenv').config();
+const key = process.env;
 
-mongoose
-.connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
-.then(() => { console.log('Connected to ABH Pharma DB.....')})
-.catch((err) => console.log(err));
-
+// ** not needed since we open a connection with passport
+// mongoose 
+// .connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
+// .then(() => { console.log('Connected to ABH Pharma DB.....')})
+// .catch((err) => console.log(err));
+mongoose.set('useFinAndModify', false);
 
 
 
@@ -38,32 +39,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ___Setting up sessions to be use for login purposes
 app.use(
 	sessions({
-		maxAge: 1000 * 60 * 60 * 2,
-		//miliSec    sec     min    hours     days
-		keys: [ key.session.cookieKey ]
+		maxAge: 1000 	* 	60	 * 	60 	* 	2,
+			   //miliSec    sec     min    hours     days
+		keys: [ key.cookieKey ]
 	})
 );
+
 
 // ___passport middleware
 require('./config/passport')(passport);
 app.use(passport.initialize('./config/passport.js')); // this initializes
 app.use(passport.session());
+console.log(passport.session);
+
+// app.use(express.csrf());
+// ^^this express.csrf is used for protection from looking into input values
+//We are using the global.loggedUsers to keep track of the users to reference later
+
+
+
+
 
 // ___ user flash
 app.use(flash());
 
+
 // ++ global vars
 app.use((req, res, next) => {
+	session = req._passport.session;
 	res.locals.success_msg = req.flash('success_msg');
 	res.locals.error_msg = req.flash('error_msg');
-	res.locals.cred = {
-		manager: false,
-		admin : false,
-		name : 'Base Name'
-	};
 	next()
 });
-exp.temp();
 
 	// ___Mounting the route at the / path
 	app.use('/', login);

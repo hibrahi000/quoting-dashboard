@@ -18,10 +18,10 @@ const key =  require('../config/keys');
 
 
 //  ::Database
-const materialDB = require('../models/Material').Material;
-const vendorDB = require('../models/Vendor').Vendor;
-const employeeDB = require('../models/Employee').Employee;
-const receiptDB = require('../models/QuoteReceipts').QuoteReceipt;
+const materialDB = require('../models/database/Material').Material;
+const vendorDB = require('../models/database/Vendor').Vendor;
+const employeeDB = require('../models/database/Employee').Employee;
+const receiptDB = require('../models/database/QuoteReceipts').QuoteReceipt;
 
 //  ::Variables
 const errors = [];
@@ -31,10 +31,10 @@ const loginView = 'dashboard';
 
 
 
-// mongoose
-// .connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
-// .then(() => { console.log('Connected to ABH Pharma DB.....')})
-// .catch((err) => console.log(err));
+mongoose
+.connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
+.then(() => { console.log('Connected to ABH Pharma DB.....')})
+.catch((err) => console.log(err));
 
 
 // employeeDB.find({}).then(collection => {
@@ -48,19 +48,26 @@ const loginView = 'dashboard';
 // })
 
 
-module.exports = {
-    sayHello : ()=> {
-            return 'hello';
-            },
-    addNumbers: (value1, value2) => {
-        return value1 + value2
-    },
-    temp : (req,res) => {
-// const {userCred} = res.locals;
-    // console.log(userCred);
-    }
-}
+// module.exports = {
+//     sayHello : ()=> {
+//             return 'hello';
+//             },
+//     addNumbers: (value1, value2) => {
+//         return value1 + value2
+//     },
+//     temp : (req,res) => {
+// // const {userCred} = res.locals;
+//     // console.log(userCred);
+//     }
+// }
 
 // userCred = 'hello world';
 
 
+
+
+vendorDB.find({}).then(doc => {
+   doc.forEach((doc,index) => {
+       console.log(index + ' ' + doc.VendorName);
+   })
+})

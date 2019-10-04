@@ -1,4 +1,4 @@
-module.exports = function userAuthenticate(req, res, next) {
+exports.userAuthenticate = (req, res, next) =>  {
 	if (req.isAuthenticated()) {
 		return next();
 	}

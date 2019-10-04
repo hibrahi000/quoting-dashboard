@@ -1,0 +1,1 @@
+const quoteReceiptDB = require('../../models/database/QuoteReceipts').QuoteReceipt;

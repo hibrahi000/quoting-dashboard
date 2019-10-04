@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="purple" data-background-color="white"
+<div class="sidebar" data-color="white" data-background-color="black"
   data-image="/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -6,8 +6,8 @@
       Tip 2: you can also add an image using data-image tag
   _-->
   <div class="logo">
-    <a class="simple-text logo-normal">
-      <%=cred.name%>
+    <a class="simple-text text-sky logo-normal">
+      <%=user.FirstName + user.LastName  %>
       </a>
     </div>
 
@@ -16,9 +16,9 @@
         <li class="nav-item ">
           <p class="nav-link underlineHover" >
             <i class="material-icons">contacts</i>
-            <h4> <%if(cred.admin) {%>
+            <h4 class='text-info'> <%if(user.Admin) {%>
                     Admin
-                  <%} else if(cred.manager) { %>
+                  <%} else if(user.Manager) { %>
                     Manager
                   <%} else{ %> 
                     Sales
@@ -28,61 +28,71 @@
           </p>
      
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="./dashboard.html">
+        <li class="nav-item <% if(page === 'Dashboard') { %>
+          active
+        <%}%>">
+          <a class="nav-link" href="Dashboard">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./user.html">
+        <li class="nav-item <% if(page === 'User Profile') { %>
+            active
+          <%}%>">
+          <a class="nav-link"href="User_Profile">
             <i class="material-icons">person</i>
             <p>User Profile</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./tables.html">
+        <li class="nav-item <% if(page === 'Material List') { %>
+            active
+          <%}%>">
+          <a class="nav-link" href="Material_List">
             <i class="material-icons">content_paste</i>
             <p>Material List</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
+        <li class="nav-item <% if(page === 'My Stats') { %>
+            active
+          <%}%>">
+          <a class="nav-link" href="My_Stats">
+            <i class="material-icons">blur_linear</i>
+            <p>My Stats</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./map.html">
-            <i class="material-icons">feedback</i>
+        <li class="nav-item <% if(page === 'Message Board') { %>
+            active
+          <%}%>">
+          <a class="nav-link" href="Message_Board">
+            <i class="material-icons">forum</i>
             <p>Message Board</p>
           </a>
         </li>
         
-        <% if(cred.admin || cred.manager) { %>
+        <% if(user.Admin || user.Manager) { %>
         <!-- Admin/Manager Side Bar options -->
-          <li class="nav-item">
-          <a class="nav-link" href="./icons.html">
-            <i class="material-icons">group_add</i>
-            <p class='text-danger'>Add User</p>
+        <li class="nav-item <% if(page === 'Manage Users') { %>
+            active
+          <%}%>">
+          <a class="nav-link" href="Manage_Users">
+            <i class="material-icons">group</i>
+            <p class='text-warning'>MANAGE USERS</p>
           </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">person_add_disabled</i>
-              <p class='text-danger'>Remove User</p>
-            </a>
+          <li class="nav-item <% if(page === 'Manager Tools') { %>
+            active
+          <%}%>">
+          <a class="nav-link" href="Manager_Tools">
+            <i class="material-icons">build</i>
+            <p class='text-warning'>MANAGER TOOLS</p>
+          </a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="./icons.html">
-                <i class="material-icons">person_add_disabled</i>
-                <p class='text-danger'>Remove User</p>
-              </a>
-            </li>
+          
+          
         <% } %>
 
         <li class="nav-item active-pro">
-          <a class="nav-link" href="Quoting_App/LogOut">
+          <a class="nav-link" href="LogOut">
             <i class="material-icons">lock</i>
             <p>Log Out</p>
           </a>

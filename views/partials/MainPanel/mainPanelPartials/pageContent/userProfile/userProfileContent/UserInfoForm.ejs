@@ -1,0 +1,17 @@
+<div class="col-md-10" >
+  <div class="card">
+    <%-include ./CardHeader.ejs %>
+      <div class="card-body">
+        <form method="POST" action="Update_User_Profile" >
+
+          <%-include ./userInfoFormContent/row1.ejs%>
+          <%-include ./userInfoFormContent/row2.ejs%>
+          <%-include ./userInfoFormContent/row4.ejs%>
+
+          <button type="button" id="updateProfile" class="btn btn-primary pull-right" onclick="ui.validateUpdate()">Update Profile </button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+

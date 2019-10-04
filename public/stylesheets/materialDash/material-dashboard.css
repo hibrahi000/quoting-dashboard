@@ -8710,6 +8710,14 @@ a.text-warning:focus {
   color: #ffe608 !important;
 }
 
+.text-sky {
+  color: #3377b8 !important;
+}
+a.text-sky:hover,
+a.text-sky:focus {
+  color: #1d69b1 !important;
+}
+
 .text-danger {
   color: #f44336 !important;
 }
@@ -16816,6 +16824,25 @@ label {
   background: linear-gradient(60deg, #ef5350, #e53935);
 }
 
+.card.bg-dark,
+.card .card-header-dark .card-icon,
+.card .card-header-dark .card-text,
+.card .card-header-dark:not(.card-header-icon):not(.card-header-text),
+.card.card-rotate.bg-dark .back,
+.card.card-rotate.bg-dark .front {
+  background: linear-gradient(60deg, #555758, #d1d4dc);
+}
+
+.card.bg-sky,
+.card .card-header-sky .card-icon,
+.card .card-header-sky .card-text,
+.card .card-header-sky:not(.card-header-icon):not(.card-header-text),
+.card.card-rotate.bg-sky .back,
+.card.card-rotate.bg-sky .front {
+  background: linear-gradient(60deg, #3377b8, #57a5f4);
+}
+
+
 .card .card-header-rose .card-icon,
 .card .card-header-rose .card-text,
 .card .card-header-rose:not(.card-header-icon):not(.card-header-text),
@@ -16860,6 +16887,20 @@ label {
 .card .card-header-success .card-text {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
 }
+
+.card .card-header-dark .card-icon,
+.card .card-header-dark:not(.card-header-icon):not(.card-header-text),
+.card .card-header-dark .card-text {
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(71, 80, 78, 0.4);
+}
+
+
+.card .card-header-sky .card-icon,
+.card .card-header-sky:not(.card-header-icon):not(.card-header-text),
+.card .card-header-sky .card-text {
+  box-shadow: 0 4px 20px 0px rgba(49, 77, 94, 0.64), 0 7px 10px -5px rgba(129, 150, 169, 0.7);
+}
+
 
 .card [class*="card-header-"],
 .card[class*="bg-"] {

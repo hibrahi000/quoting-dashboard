@@ -1,8 +1,42 @@
 
 <div class="main-panel">
+
   <!-- the Nav Bar also used to display side bar -->
-  <%-include ./mainPanelPartials/navBar/navBar.ejs%>
+  <%-include ./mainPanelPartials/navBar/navBar.ejs %>
 
   <!-- The Dashboard partial -->
-  <%-include ./mainPanelPartials/dashboard.ejs%>
-  </div>
+
+  <!-- ++ We do not add the div class Container since we might want to do something with each section with a different -->
+
+    <% if (page === 'Dashboard'){ %>
+
+      <%-include ./mainPanelPartials/pageContent/dashboard/dashboard.ejs%>
+
+    <% } %>
+
+      <!-- User Profile partial -->
+
+    <% if (page === 'User Profile'){ %>
+
+      <%-include ./mainPanelPartials/pageContent/userProfile/userProfile.ejs %>
+
+    <% } %>
+
+      <!-- Material List partial -->
+
+    <% if (page === 'Material List'){ %>
+
+      <%-include ./mainPanelPartials/pageContent/materialList/materialList.ejs %>
+
+    <% } %>
+
+      <!-- Add User partial -->
+
+    <% if (page === 'Manage Users'){ %>
+
+      <%-include ./mainPanelPartials/pageContent/manageUsers/manageUsers.ejs %>
+
+    <% } %>
+
+
+</div>

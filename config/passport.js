@@ -1,16 +1,29 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-const employee = require('../models/Employee').Employee;
+const employee = require('../models/database/Employee').Employee;
+const Demo = require('../models/database/demo');
 const mongoose = require('mongoose');
-const key = require('../config/keys');
-
+const key = process.env;
 
 function passport(passport) {
 	console.log('----------------------- START PASSPORT ----------------');
+
 	mongoose
-		.connect(key.ABHPHARMA_DB_CONNECT_URI, { useNewUrlParser: true })
+		.connect(key.mongo_connect_uri, { useNewUrlParser: true})
 		.then(() => {
-			console.log('Connected to ABH Pharma DB.....');
+			// ^^ just a little fun with the console not really needed.
+			console.log('Connected to Mongo Atlas DB.....');
+			setTimeout(() => {
+				console.log('-->');
+			}, 200);
+			setTimeout(() => {
+				console.log('---->');
+			}, 500);
+			setTimeout(() => {
+				console.log('------> connected and running on PORT 5000');
+				console.log('Url: localhost:5000/');
+			}, 700);
+			
 		})
 		.catch((err) => console.log(err));
 
@@ -57,6 +70,7 @@ function passport(passport) {
 				})
 				.catch((err) => {
 					console.log('err');
+					return done(null, false);
 				});
 		})
 	);
@@ -89,7 +103,7 @@ function passport(passport) {
 							} else {
 								// :: if this is one of the Manager or Admin staff
 								console.log('Manager/Admin logging into Manager Portal User: ' + username);
-								
+
 								return done(null, staff);
 							}
 						} else {
@@ -106,15 +120,46 @@ function passport(passport) {
 
 	passport.serializeUser((employee, done) => {
 		console.log('serialized');
-		done(null, employee.id);
+		done(null, employee);
 	});
 
 	passport.deserializeUser((id, done) => {
 		employee.findById(id, function(err, user) {
-			
 			done(err, user);
 		});
 	});
+}
+
+function createEmployee() {
+	bcrypt.genSalt(10, (err, salt) =>
+		bcrypt.hash('TestPassword', salt, (err, hash) => {
+			if (err) throw err;
+
+			//set password to hash
+			const createEmployee = new employee({
+				FirstName: 'Map',
+				LastName: 'Data',
+				Email: 'TestEmail@Test.com',
+				Cell: 7183340090,
+				Department: 'Sales',
+				Admin: false,
+				Scheduel: null,
+				Username: 'TestUsername',
+				Password: hash,
+				PlainPassword: 'TestPassword'
+			});
+
+			createEmployee.save((err) => {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log('Employee Profile Saved');
+				}
+			});
+		})
+	);
+
+
 }
 
 module.exports = passport;
