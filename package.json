@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "nodemon ./bin/www",
 		"test": "mocha --REPORTER=nyan|| true",
-		"scss-sync" : "node-sass -o public/stylesheets scss/loginStyle.scss; node-sass -o public/stylesheets scss/_layout.scss ; say compiling completed "
+		"scss-sync": "node-sass -o public/stylesheets scss/loginStyle.scss; node-sass -o public/stylesheets scss/_layout.scss ; say compiling completed "
 	},
 	"dependencies": {
 		"@sendgrid/mail": "^6.4.0",
@@ -23,7 +23,6 @@
 		"express": "^4.17.1",
 		"http-errors": "^1.7.2",
 		"jsonwebtoken": "^8.5.1",
-		"lodash": "^4.17.11",
 		"mongoose": "^5.5.11",
 		"morgan": "~1.9.1",
 		"node-sass": "^4.12.0",
@@ -35,7 +34,6 @@
 	},
 	"devDependencies": {
 		"chai": "^4.2.0",
-		"eslint": "^5.16.0",
 		"eslint-config-airbnb-base": "^13.1.0",
 		"eslint-plugin-import": "^2.17.3",
 		"mocha": "^6.1.4"
