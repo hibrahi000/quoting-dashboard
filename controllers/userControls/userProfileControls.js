@@ -46,7 +46,7 @@ exports.updateUserProfile = (req, res, next) => {
     }else{
         console.log(session.user._id)
         employeeDB.findByIdAndUpdate(session.user._id, update, {new: true}).then(doc => {console.log(doc)})
-      
+
         res.redirect()
     }
 };
@@ -61,9 +61,9 @@ exports.validate_UserInfo = (req,res,next) => {
         valid : false,
         email: email,
         newPassword: newPassword,
-    
+
     }
-    
+
     if(emailValidate(email)){
         if(passwordChanged(oldPassword,newPassword,newPasswordRepeat)){
             if(originalPasswordVerified(originalPassword, oldPassword)){
